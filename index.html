@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Прогресс Бар</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="circle">
+                <div role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="7" data-step="1" style="--total: 7;"></div>
+            </div>
+            <div class="info">
+                <div class="header">
+                    <span id="badge" class="badge">Чеклист</span>
+                    <span id="progress-label" class="status" data-total="7" data-step="1"></span>
+                </div>
+                <div class="next-action">
+                    Следующее действие: Созвониться с клиентом до 23.05.24 12:00
+                </div>
+            </div>
+            <button class="checklist-button" aria-labelledby="button-label">
+                <span id="button-label">Открыть чеклист</span>
+            </button>
+        </div>
+    </div>
+</body>
+</html>

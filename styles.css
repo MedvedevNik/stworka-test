@@ -1,0 +1,144 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: Inter, Arial, sans-serif;
+}
+
+.container {
+    background-color: #4285f4;
+    border-radius: 12px;
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    max-width: 728px;
+    width: 100%;
+    color: white;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+	gap: 16px;
+    width: 100%;
+}
+
+
+.info {
+    flex-grow: 1;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    margin-bottom: 5px;
+}
+
+.badge {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    padding: 2px 8px;
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+.status {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 20px;
+    text-align: left;
+}
+
+.next-action {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.checklist-button {
+    background-color: white;
+    color: #4285f4;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.checklist-button:hover {
+    background-color: #e0e0e0;
+}
+
+.container .status::before {
+    content: 'Выполнено: ' attr(data-step) ' из ' attr(data-total) ' действий';
+}
+
+
+@keyframes progress {
+	0% { --percentage: 0; }
+	100% { --percentage: var(--value); }
+}
+
+[data-step="0"] { --percentage: 0; --step: 0; }
+[data-step="1"] { --percentage: 14; --step: 1; }
+[data-step="2"] { --percentage: 28; --step: 2; }
+[data-step="3"] { --percentage: 42; --step: 3; }
+[data-step="4"] { --percentage: 56; --step: 4; }
+[data-step="5"] { --percentage: 70; --step: 5; }
+[data-step="6"] { --percentage: 85; --step: 6; }
+[data-step="7"] { --percentage: 100; --step: 7; }
+
+@property --percentage {
+	syntax: '<number>';
+	inherits: true;
+	initial-value: 0;
+}
+
+
+[role="progressbar"] {
+	--primary: rgba(255, 255, 255, 1);
+	--secondary: rgba(255, 255, 255, 0.5);
+	--size: 60px;
+	width: var(--size);
+	aspect-ratio: 1;
+	border-radius: 50%;
+	position: relative;
+	overflow: hidden;
+	display: grid;
+	place-items: center;
+}
+
+[role="progressbar"]::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: conic-gradient(var(--primary) calc(1% * var(--percentage)), var(--secondary) 0);
+	mask: radial-gradient(white 62%, transparent 0);
+	mask-mode: alpha;
+	-webkit-mask: radial-gradient(#0000 62%, #000 0);
+	-webkit-mask-mode: alpha;
+}
+
+[role="progressbar"]::after {
+	counter-reset: count1 var(--step) count2 var(--total);
+	content: counter(count1) '/' counter(count2);
+	font-family: Inter;
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 30px;
+	text-align: left;
+	color: white;
+}
+
